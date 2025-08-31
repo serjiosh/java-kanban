@@ -1,6 +1,8 @@
 public class Main {
     public static void main(String[] args) {
-        TaskManager manager = new TaskManager();
+        // Используем утилитарный класс для создания менеджера
+        TaskManager manager = Managers.getDefault();
+        
         System.out.println("=== СОЗДАНИЕ ЗАДАЧ ===");
         
         // Создаем две задачи
@@ -23,6 +25,27 @@ public class Main {
         System.out.println("Эпики: " + manager.getAllEpics());
         System.out.println("Задачи: " + manager.getAllTasks());
         System.out.println("Подзадачи: " + manager.getAllSubtasks());
+        
+        // Тестируем историю просмотров
+        System.out.println("\n=== ТЕСТИРОВАНИЕ ИСТОРИИ ПРОСМОТРОВ ===");
+        System.out.println("История до просмотров: " + manager.getHistory());
+        
+        // Просматриваем задачи - это должно добавить их в историю
+        System.out.println("\nПросматриваем задачу 1:");
+        Task viewedTask1 = manager.getTaskById(task1.getId());
+        System.out.println("История после просмотра задачи 1: " + manager.getHistory());
+        
+        System.out.println("\nПросматриваем эпик 1:");
+        Epic viewedEpic1 = manager.getEpicById(epic1.getId());
+        System.out.println("История после просмотра эпика 1: " + manager.getHistory());
+        
+        System.out.println("\nПросматриваем подзадачу 1:");
+        Subtask viewedSubtask1 = manager.getSubtaskById(subtask1.getId());
+        System.out.println("История после просмотра подзадачи 1: " + manager.getHistory());
+        
+        System.out.println("\nПросматриваем задачу 2:");
+        Task viewedTask2 = manager.getTaskById(task2.getId());
+        System.out.println("История после просмотра задачи 2: " + manager.getHistory());
         
         // Изменяем статусы созданных объектов
         System.out.println("\n=== ИЗМЕНЕНИЕ СТАТУСОВ ===");
@@ -102,5 +125,9 @@ public class Main {
         System.out.println("Эпики: " + manager.getAllEpics());
         System.out.println("Задачи: " + manager.getAllTasks());
         System.out.println("Подзадачи: " + manager.getAllSubtasks());
+        
+        // Финальная история просмотров
+        System.out.println("\n=== ФИНАЛЬНАЯ ИСТОРИЯ ПРОСМОТРОВ ===");
+        System.out.println("История: " + manager.getHistory());
     }
 }
