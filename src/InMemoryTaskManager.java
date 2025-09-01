@@ -14,7 +14,7 @@ public class InMemoryTaskManager implements TaskManager {
         this.epics = new HashMap<>();
         this.subtasks = new HashMap<>();
         this.nextId = 1;
-        this.historyManager = new InMemoryHistoryManager();
+        this.historyManager = Managers.getDefaultHistory(); // Используем интерфейс через утилитарный класс
     }
 
     // Генерация нового ID
